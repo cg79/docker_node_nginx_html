@@ -22,5 +22,6 @@ services:
         - my
     volumes:
         - ./logs/nginx/:/var/log/nginx:cached
+        - ./wwwroot/:/var/www/
 
 

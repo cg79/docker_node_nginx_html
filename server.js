@@ -50,7 +50,7 @@ securedRouter.post("/", async function (ctx) {
     ctx.body = {message: `Hello ${name}!`}
 });
 
-router.get("/people76", async (ctx) => {
+router.get("/api/people76", async (ctx) => {
     ctx.body = await ctx.app.people.find().toArray();
 });
 
@@ -76,6 +76,8 @@ securedRouter.delete("/people/:id", async (ctx) => {
     let documentQuery = {"_id": ObjectID(ctx.params.id)}; // Used to find the document
     ctx.body = await ctx.app.people.deleteOne(documentQuery);
 });
+
+console.log(router.stack.map(i => i.path));
 
 app.use(router.routes()).use(router.allowedMethods());
 app.use(securedRouter.routes()).use(securedRouter.allowedMethods());
