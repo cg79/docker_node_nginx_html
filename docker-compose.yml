@@ -5,11 +5,22 @@ services:
     volumes:
     - ./:/usr/src/app
     ports:
-        - "8080:3001"
+        - "3001"
     depends_on:
         - mongo
+  
   mongo:
     image: mongo
     ports:
     - "27017:27017"
+
+  nginx:
+    build: ./nginx
+    ports:
+        - "3002:80"
+    links:
+        - my
+    volumes:
+        - ./logs/nginx/:/var/log/nginx:cached
+
 
