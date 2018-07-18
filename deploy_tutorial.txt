@@ -1,0 +1,33 @@
+https://www.youtube.com/watch?v=RE2PLyFqCzE
+sudo npm install -g node-sass --unsafe-perm=true --allow-root
+sudo npm install node-sass --unsafe-perm=true --allow-root
+
+$sudo chown claudiu node_modules
+$sudo npm install
+yarn add node-sass
+
+https://github.com/angular/angular-cli/issues/5733
+npm install -g angular-cli-ghpages
+ng build -sm -ec -bh /aboutme/ & ngh --silent=false
+
+npm ls webpack
+
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
+Stop All Containers
+
+# docker stop $(docker ps -a -q)
+
+Remove All Containers
+
+# docker rm $(docker ps -a -q)
+
+docker rmi $(docker images -a -q)
+
+docker exec -i -t container_name /bin/bash
+
+docker exec -i -t container_name /bin/bash
+
+docker run -p 27017:27017 --name some-mongo -d mongo
+
+docker cp ./nginx/nginx.conf 3fd089f75090:/etc/nginx/nginx.conf
