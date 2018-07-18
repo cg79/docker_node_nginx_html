@@ -35,7 +35,9 @@ WORKDIR "/usr/src/app"
 #Expose port and start application
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+#CMD [ "npm", "start" ]
+
+CMD [ "npm", "run", "startserver" ]
 
 RUN apt-get update
 RUN ["apt-get","install","-y","vim"]
