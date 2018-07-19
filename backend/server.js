@@ -45,12 +45,14 @@ securedRouter.get("/", async function (ctx) {
     ctx.body = {message: `Hello ${name}!`}
 });
 
+
 securedRouter.post("/", async function (ctx) {
     let name = ctx.request.body.name || "World";
     ctx.body = {message: `Hello ${name}!`}
 });
 
 router.get("/api/people76", async (ctx) => {
+  await ctx.app.people.insert({a:552});
     ctx.body = await ctx.app.people.find().toArray();
 });
 

@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 RUN ls
 #COPY package.json ./
 
-#RUN npm install
+
+
 # Copy app source code
 COPY . .
 
@@ -15,16 +16,12 @@ run ls
 
 run npm install
 
+run npm install koa
+
+run ls
+
 RUN npm install -g nodemon
 
-EXPOSE 3001
+EXPOSE 8080
 
-#CMD [ "npm", "start" ]
-
-#CMD [ "nodemon", "server" ]
-run nodemon server.js
-
-#RUN apt-get update
-#RUN ["apt-get","install","-y","vim"]
-
-
+CMD [ "npm", "start" ]
