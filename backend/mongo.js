@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const MONGO_URL = "mongodb://mongo:27017/polyglot_ninja";
+const MONGO_URL = "mongodb://mongoimage:27017/polyglot_ninja";
 
 
 module.exports = function (app) {

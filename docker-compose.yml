@@ -1,20 +1,45 @@
 version: "2"
 services:
-  my:
-    build: .
-    container_name: client
-    volumes:
-    #- ./dist/:/usr/src/app/www/dist
-    - client_deps:/usr/src/app/www/node_modules
+  backend:
+    build: ./backend
+    environment:
+       - P_MONGO_URI=mongodb://mongoimage:27017/isawyou
+    #container_name: backend
+    #volumes:
+    #  - ./backend:/usr/src/app
     ports:
-        - "4001:80"
+        - "3001:3001"
+    networks:
+      - back-tier 
     depends_on:
-        - mongo
-  
-  mongo:
+        - mongoimage
+
+  mongoimage:
     image: mongo
+    volumes:
+      - ./data:/data/db
     ports:
     - "27017:27017"
+    networks:
+      - back-tier 
+
+networks:
+  back-tier:
+    driver: bridge
+
+  # my:
+  #   build: .
+  #   container_name: client
+  #   volumes:
+  #   #- ./dist/:/usr/src/app/www/dist
+  #   - client_deps:/usr/src/app/www/node_modules
+  #   ports:
+  #       - "4001:80"
+   
+  
+
+
+  
 
   # nginxmy:
   #  build: ./nginxmy
@@ -35,5 +60,5 @@ services:
   #      - ./logs/nginx/:/var/log/nginx:cached
   #       #- ./dist/:/var/www/
 
-volumes:
-  client_deps:
+# volumes:
+#   client_deps:
