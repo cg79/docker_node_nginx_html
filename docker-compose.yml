@@ -1,25 +1,37 @@
 version: "2"
 services:
+  # server:
+  #   build: ./backend
+  #   environment:
+  #     - P_MONGO_URI=mongodb://mongoimage:27017/isawyou
+  #   volumes:
+  #     - ./backend:/usr/src/app
+  #     - node_modules:/usr/src/app/node_modules
+  #   ports:
+  #       - "8080:3001"
+  #   depends_on:
+  #       - mongo
+  #
+  # mongo:
+  #   image: mongo
+  #   volumes:
+  #     - db_data:/data/db
+  #   ports:
+  #     - "27017:27017"
 
-  my:
-    build: ./backend
-    environment:
-      - P_MONGO_URI=mongodb://mongoimage:27017/isawyou
+  client_dev:
+    build: ./www
+    container_name: client
     volumes:
-      - ./backend:/usr/src/app
-      - node_modules:/usr/src/app/node_modules
+    #- ./dist/:/usr/src/app/www/dist
+    - client_deps:/usr/src/app/node_modules
     ports:
-        - "8080:3001"
-    depends_on:
-        - mongo
-
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
+        - "4200:4200"
 
 volumes:
-  node_modules:
+  # node_modules:
+  # db_data:
+  client_deps:
 
 
 
