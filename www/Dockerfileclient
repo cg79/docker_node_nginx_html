@@ -1,0 +1,45 @@
+FROM node:latest
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+RUN ls
+COPY package.json ./
+
+RUN npm install
+# Copy app source code
+COPY . .
+run ls
+
+RUN npm install -g nodemon
+
+#install npm for ang app
+
+run npm install
+RUN npm install -g @angular/cli@1.7.4 --unsafe
+run ng build --prod 
+RUN npm i && mkdir /ngdist && cp -R ./dist ./ngdist
+
+#end install npm for ang app 
+
+
+
+
+#Expose port and start application
+EXPOSE 80
+
+#CMD [ "npm", "start" ]
+
+RUN apt-get update
+RUN ["apt-get","install","-y","vim"]
+RUN ["apt-get","install","-y","nginx"]
+
+#RUN ["cp", "./www/dist/", "/usr/share/nginx/html"]
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+#VOLUME [./logsclient/nginx/, /var/log/nginx:cached]
+
+CMD [ "nginx", "-g", "daemon off;" ]
+

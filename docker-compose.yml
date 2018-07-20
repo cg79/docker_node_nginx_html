@@ -19,19 +19,30 @@ services:
   #   ports:
   #     - "27017:27017"
 
-  client_dev:
-    build: ./www
-    container_name: client
+  # client_dev:
+  #   build: ./www
+  #   container_name: client
+  #   volumes:
+  #   - ./www:/usr/src/app
+  #   - client_deps:/usr/src/app/node_modules
+  #   ports:
+  #       - "4200:4200"
+
+  client_prod:
+    build:
+      context: ./www
+      dockerfile: "Dockerfileclient"
+    container_name: client_prod
     volumes:
-    #- ./dist/:/usr/src/app/www/dist
-    - client_deps:/usr/src/app/node_modules
+    - clientprod_deps:/usr/src/app/node_modules
     ports:
-        - "4200:4200"
+        - "8080:80"
 
 volumes:
   # node_modules:
   # db_data:
-  client_deps:
+  #client_deps:
+  clientprod_deps:
 
 
 
