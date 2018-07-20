@@ -83,4 +83,8 @@ console.log(router.stack.map(i => i.path));
 
 app.use(router.routes()).use(router.allowedMethods());
 app.use(securedRouter.routes()).use(securedRouter.allowedMethods());
-app.listen(3001);
+app.listen(6002);
+
+
+const ioSocket = require("./ioSocket")();
+ioSocket.connect(app);

@@ -18,6 +18,8 @@ run npm install
 
 run npm install koa
 
+run npm install socket.io
+
 run ls
 
 RUN npm install -g nodemon

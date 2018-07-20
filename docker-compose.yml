@@ -1,23 +1,23 @@
 version: "2"
 services:
-  # server:
-  #   build: ./backend
-  #   environment:
-  #     - P_MONGO_URI=mongodb://mongoimage:27017/isawyou
-  #   volumes:
-  #     - ./backend:/usr/src/app
-  #     - node_modules:/usr/src/app/node_modules
-  #   ports:
-  #       - "8080:3001"
-  #   depends_on:
-  #       - mongo
-  #
-  # mongo:
-  #   image: mongo
-  #   volumes:
-  #     - db_data:/data/db
-  #   ports:
-  #     - "27017:27017"
+  server_api:
+    build: ./backend
+    environment:
+      - P_MONGO_URI=mongodb://mongoimage:27017/isawyou
+    volumes:
+      - ./backend:/usr/src/app
+      - node_modules_server1:/usr/src/app/node_modules
+    ports:
+        - "8080:3001"
+    depends_on:
+        - mongo
+  
+  mongo:
+    image: mongo
+    volumes:
+      - db_data:/data/db
+    ports:
+      - "27017:27017"
 
   # client_dev:
   #   build: ./www
@@ -34,13 +34,17 @@ services:
       dockerfile: "Dockerfileclient"
     container_name: client_prod
     volumes:
-    - clientprod_deps:/usr/src/app/node_modules
+      - ./client_prod/nginx/:/var/log/nginx:cached
+      - clientprod_deps:/usr/src/app/node_modules
     ports:
-        - "8080:80"
+      - "3001:80"
+    depends_on:
+      - server_api
 
 volumes:
   # node_modules:
-  # db_data:
+  node_modules_server1:
+  db_data:
   #client_deps:
   clientprod_deps:
 
